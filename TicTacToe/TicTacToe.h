@@ -9,7 +9,8 @@
 #include "GameLogic.h"
 #include "Player.h"
 #include <iostream>
-class TicTacToe {
+#include "../Interfaces/GameInterface.h"
+class TicTacToe :public  GameInterface{
     //Goes the main app right here!!!
 private:
     Grid grid;
@@ -17,15 +18,13 @@ private:
     Player player1, player2;
 public:
     TicTacToe();
-    void start();
+    void start()override;
     bool end();
 
+    std::string getTitle() override;
     bool isWinner(Player player);
-
     void displayWinner(Player player);
-
     void getPlayerMarks();
 };
-
 
 #endif //GAMES_CS3A_REVIEW_TICTACTOE_H

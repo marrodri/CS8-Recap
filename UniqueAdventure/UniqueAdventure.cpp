@@ -2,15 +2,15 @@
 // Created by Marthel Rodriguez on 9/16/23.
 //
 
-#include "Game.h"
+#include "UniqueAdventure.h"
 
-#include "game.h"
+#include "UniqueAdventure.h"
 #include <algorithm>
 #include <array>
 
-// Game::Game() {
+// UniqueAdventure::UniqueAdventure() {
 // }
-Game::Game()
+UniqueAdventure::UniqueAdventure()
 {
 
     std::cout << "Instantiating game" << std::endl;
@@ -27,7 +27,7 @@ Game::Game()
     this->roomsMap['f'] = Room("(f)ront", 'f', {'h', ' ', ' ', ' ', ' '}, true, "Front entrance to house");
     this->currentRoom = roomsMap['p'];
 }
-void Game::runGame()
+void UniqueAdventure::runGame()
 {
     std::cout << "running game" << std::endl;
     while (!this->win && !this->loose)
@@ -44,7 +44,7 @@ void Game::runGame()
         std::cout << "Congrats, you have won!!!, wanna play again?" << std::endl;
     }
 }
-bool Game::isRoomConnected(std::array<char, maxCapOfConnectedRooms> connectedRooms, char roomToCheck)
+bool UniqueAdventure::isRoomConnected(std::array<char, maxCapOfConnectedRooms> connectedRooms, char roomToCheck)
 {
     for (int i = 0; i < maxCapOfConnectedRooms; i++)
     {
@@ -56,7 +56,7 @@ bool Game::isRoomConnected(std::array<char, maxCapOfConnectedRooms> connectedRoo
     return false;
 }
 
-void Game::enterUserAction()
+void UniqueAdventure::enterUserAction()
 {
     char userInput = ' ';
     std::array<char, maxCapOfConnectedRooms> connectedRooms = currentRoom.connectedRooms;
@@ -88,7 +88,7 @@ void Game::enterUserAction()
     }
 }
 
-void Game::changeRoom(char roomToChange)
+void UniqueAdventure::changeRoom(char roomToChange)
 {
     this->setCurrentRoom(roomsMap[roomToChange]);
     std::cout << "changing room to: " << this->currentRoom.roomName << std::endl;
@@ -101,7 +101,23 @@ void Game::changeRoom(char roomToChange)
     }
 }
 
-void Game::setCurrentRoom(Room changedRoom)
+void UniqueAdventure::setCurrentRoom(Room changedRoom)
 {
     this->currentRoom = changedRoom;
+}
+
+
+std::string UniqueAdventure::getTitle() {
+    return "Unique Adventure";
+}
+
+void UniqueAdventure::start() {
+    //bring the main logic
+    char newGame = ' ';
+
+    while(newGame != 'n'){
+        runGame();
+        std::cout << "Start a new game?(y/n)" << std::endl;
+        std::cin >> newGame;
+    }
 }

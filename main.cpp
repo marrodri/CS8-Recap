@@ -1,59 +1,57 @@
-#include <iostream>
 
-#include "App.h"
-#include "CustFunctions/CustFunctions.h"
-#include <fstream>
-
-int main(){
-    App app;
-    app.run();
-}
-/**
- * TicTacToe mainGame
- * */
-//int main()
-//{
-////    Player p;
-////    std::cin >> p;
-//    TicTacToe game;
-//    game.start();
-//    return 0;
+//app test.
+//#include "App.h"
+//int main(){
+//    App app;
+//    app.run();
 //}
-
-/***
- * Choose your own adventure main.
- * */
-//int main() {
-//
-//    char newGame = ' ';
-//    srand(time(0));
-//
-//    while(newGame != 'n'){
-//        UniqueAdventure game;
-//        game.runGame();
-//        std::cout << "Start a new game?(y/n)" << std::endl;
-//        std::cin >> newGame;
-//    }
-//
-//    return 0;
-//}
-
 
 //hangman
-//int main(){
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
+#include "Hangman/Hangman.h"
+//int main()
+//{
+//    srand(time(0));
 //    std::ifstream fin;
-//    std::ofstream fout;
 //
+//    std::ofstream fout;
 //    fout.open("numbers.txt");
-//    //fout file
-//    if(fout.fail()){
-//        std::cout << "could not open file";
+//    if(fout.fail())
+//    {
+//        std::cout << "Could not open file";
+//        exit(1);
 //    }
+//    for (int i = 0; i < 100; ++i)
+//    {
+//        // rand() % (high - low) + low;
+//        //write to file.
+//        fout << (rand() % (36 - 5 + 1) + 5) << std::endl;
+//    }
+//
+//    //reading the file created.
 //    openFile(fin, "numbers.txt");
 //    int next;
-//    while(!fin.eof()){
-//        fin >> next;
-//        //what is next type.
+//    while( fin >> next )
+//    {
 //        std::cout << next << ", ";
 //    }
+//    return 0;
 //}
+
+int main(){
+    srand(time(0));
+    Hangman hangman;
+    hangman.start();
+//    Pacman p;
+//    TicTacToe tictactoe;
+//    Application console;
+//    console.addGame(tictactoe);
+//    console.addGame(p);
+//    console.run();
+}
+
+

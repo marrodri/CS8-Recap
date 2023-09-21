@@ -6,13 +6,31 @@
 #define GAMES_CS3A_REVIEW_HANGMANLOGIC_H
 
 #include <string>
+#include <array>
+#include <iostream>
 class HangmanLogic {
     int currentAttempt;
-    //pass the gHangManPics.
+    std::vector<char> currentGuess;
+    std::vector<char> usedLetters;
 public:
-    void isGameLost();
-    void getCurrentHangmanPic();
-    void updateAttempt(std::string<char> attempt, char guess);
+    HangmanLogic();
+    // update the attempt if its good or not. if not, increment the attempt and
+    //show the new hangman board.
+    void updateAttempt(std::string &answerPhrase, char guess);
+    // when the user has reached the max amount of attempts, stop and say 'game over'
+    bool isGameEnded();
+    // check the letter is not used yet.
+    bool isValidLetter(char guess);
+    // check if the currentAttempt has all the characters displayed and
+    // there's no '_' left.
+    bool hasPlayerWon();
+
+    /**
+     * getters
+     * */
+     int getCurrentAttempt();
+     std::vector<char> getUsedLetters();
+     std::vector<char> getCurrentGuess();
 };
 
 

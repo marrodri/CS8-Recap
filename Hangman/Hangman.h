@@ -9,7 +9,9 @@
 #include <array>
 #include <string>
 #include "../CustFunctions/FileIoFunctions.h"
-#define MAX_NUM_OF_ATTEMPTS 7
+#include "HangmanLogic.h"
+
+
 
 
 
@@ -17,12 +19,11 @@ class Hangman : public GameInterface {
 private:
     const std::array<std::string,7> gHangmanPics = {"+---+\n|   |\n|\n|\n|\n|\n=========\n", "+---+\n|   |\nO   |\n|\n|\n|\n=========\n", "+---+\n|   |\nO   |\n|   |\n|\n|\n=========\n", "+---+\n|   |\nO   |\n/|   |\n|\n|\n=========\n", "+---+\n|   |\nO   |\n/|\\  |\n|\n|\n=========\n", "+---+\n|   |\nO   |\n/|\\  |\n/    |\n|\n=========\n", "+---+\n|   |\nO   |\n/|\\  |\n/ \\  |\n|\n=========\n"};
     std::vector<std::string> phrases;
-    std::string selectedPhrase;
+    std::string answerPhrase;
     std::vector<std::string> board;
+    HangmanLogic hangmanLogic;
 
-    int numOfAttempts;
-    std::vector<char> currentAttempt;
-    std::vector<char> usedLetters;
+
     //convert it to an array.
     void printCurrentBoard(int index);
 public:
@@ -30,9 +31,11 @@ public:
     Hangman(std::vector<std::string> &phrases);
     std::string getTitle();
     void start();
-    void phrasePicker();
-    void updateBoard();
-    char getUserInput();
+    std::string getRandomPhrase();
+    char getUserCharInput();
+    //print the current attempt of the hangman board.
+    void printCurrentHangmanPic();
+    void printCurrentGuess();
 };
 
 #endif //GAMES_CS3A_REVIEW_HANGMAN_H

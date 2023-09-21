@@ -18,7 +18,7 @@ Hangman::Hangman(){
         board.push_back(gHangmanPics[i]);
     }
     //pick random word
-    selectedPhrase = phrases[(rand() % phrases.size()) - 1];
+    selectedPhrase = getRandomPhrase();
 
     //set attempt
     for(char letter: selectedPhrase){
@@ -31,10 +31,6 @@ Hangman::Hangman(){
     }
     std::cout<< "selectedPhrase: " << selectedPhrase <<"\n";
 
-    std::cout<< "hidden Attempt: ";
-    for(char letter: currentAttempt){
-        std::cout << letter << " ";
-    }
 
 }
 
@@ -46,17 +42,36 @@ std::string Hangman::getTitle() {
 void Hangman::start() {
     //build the logic for running hangman
     std::cout << "building the logic of hangman\n";
+    while(!hangmanLogic.hasPlayerWon() && hangmanLogic.isGameEnded()){
+        printCurrentBoard(hangmanLogic.getCurrentAttempt());
+
+    }
 }
 
-void Hangman::phrasePicker() {
+std::string Hangman::getRandomPhrase() {
+    return phrases[(rand() % phrases.size()) - 1];
 }
 
-void Hangman::updateBoard() {
-
-}
 
 void Hangman::printCurrentBoard(int index){
     std::cout << board[index] <<"\n";
 }
 
-char Hangman::getCharInput(){}
+char Hangman::getUserCharInput() {
+    char in;
+    std::cin >> in;
+    return in;
+}
+
+void Hangman::printCurrentHangmanPic() {
+    std::cout << gHangmanPics[hangmanLogic.getCurrentAttempt()-1];
+}
+
+void Hangman::printCurrentGuess() {
+    std::cout<< "hidden Attempt: ";
+    for(char letter: hangmanLogic.getCurrentGuess()){
+        std::cout << letter << " ";
+    }
+}
+
+
